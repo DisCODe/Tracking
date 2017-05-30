@@ -2,3 +2,5 @@
 
 
 ADD_COMPONENT(BackgroundEstimator)
+
+ADD_COMPONENT(OpticalFlowLK)

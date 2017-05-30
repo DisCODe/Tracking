@@ -24,7 +24,7 @@
 					<param name="index">0</param>
 				</Component>
 				
-				<Component name="Sub" type="Tracking:BackgroundEstimator" priority="2">
+				<Component name="OptFlow" type="Tracking:OpticalFlowLK" priority="2">
 				</Component>
 			</Executor>
 		</Subtask>
@@ -32,8 +32,8 @@
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.05">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">2</param>
-					<param name="title">In,Mask</param>
+					<param name="count">1</param>
+					<param name="title">Img</param>
 				</Component>
 			</Executor>
 		</Subtask>
@@ -46,12 +46,15 @@
 	<!-- pipes connecting datastreams -->
 	<DataStreams>
 		<Source name="Source.out_img">
-			<sink>Window.in_img0</sink>
-			<sink>Sub.in_img</sink>
+			<sink>OptFlow.in_img</sink>
 		</Source>
 		
-		<Source name="Sub.out_img">
-			<sink>Window.in_img1</sink>
+		<Source name="OptFlow.out_img">
+			<sink>Window.in_img</sink>
+		</Source>
+		
+		<Source name="Window.out_point0">
+			<sink>OptFlow.in_point</sink>
 		</Source>
 
 	</DataStreams>
