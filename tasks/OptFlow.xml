@@ -15,8 +15,8 @@
 	<!-- task definition -->
 	<Subtasks>
 		<Subtask name="Processing">
-			<Executor name="Exec1" period="0.01">
-				<Component name="Source" type="CameraNUI:CameraNUI" priority="1" bump="0">
+			<Executor name="Exec1" period="0.1">
+				<Component name="Source" type="CvBasic:CameraOpenCV" priority="1" bump="0">
 					<param name="lib">freenect</param>
 					<param name="skip_stop">1</param>
 					<param name="camera_mode">rgb</param>
@@ -26,14 +26,17 @@
 				
 				<Component name="OptFlow" type="Tracking:OpticalFlowLK" priority="2">
 				</Component>
+				
+				<Component name="OptFlow2" type="Tracking:OpticalFlowFarneback" priority="3">
+				</Component>
 			</Executor>
 		</Subtask>
 			
 		<Subtask name="Visualisation">
 			<Executor name="Exec2" period="0.05">
 				<Component name="Window" type="CvBasic:CvWindow" priority="1" bump="0">
-					<param name="count">1</param>
-					<param name="title">Img</param>
+					<param name="count">2</param>
+					<param name="title">LK,FB</param>
 				</Component>
 			</Executor>
 		</Subtask>
@@ -47,10 +50,15 @@
 	<DataStreams>
 		<Source name="Source.out_img">
 			<sink>OptFlow.in_img</sink>
+			<sink>OptFlow2.in_img</sink>
 		</Source>
 		
 		<Source name="OptFlow.out_img">
 			<sink>Window.in_img</sink>
+		</Source>
+		
+		<Source name="OptFlow2.out_img">
+			<sink>Window.in_img1</sink>
 		</Source>
 		
 		<Source name="Window.out_point0">

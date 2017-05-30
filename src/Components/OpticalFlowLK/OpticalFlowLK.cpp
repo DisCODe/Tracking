@@ -132,12 +132,12 @@ void OpticalFlowLK::onNewImage() {
 	size_t i, k;
 	for( i = k = 0; i < points[1].size(); i++ )
 	{
-			if( !status[i] )
-					continue;
+		if( !status[i] )
+			continue;
 
-			points[1][k++] = points[1][i];
-			cv::circle( out, points[1][i], 3, cv::Scalar(0,255,0), -1, 8);
-			cv::line(out, points[0][i], points[1][i], cv::Scalar(0, 0, 255), 1, 8);
+		points[1][k++] = points[1][i];
+		cv::circle( out, points[1][i], 3, cv::Scalar(0,255,0), -1, 8);
+		cv::line(out, points[0][i], points[1][i], cv::Scalar(0, 0, 255), 1, 8);
 	}
 	points[1].resize(k);
 		
