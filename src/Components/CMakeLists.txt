@@ -6,3 +6,7 @@ ADD_COMPONENT(BackgroundEstimator)
 ADD_COMPONENT(OpticalFlowLK)
 
 ADD_COMPONENT(OpticalFlowFarneback)
+
+ADD_COMPONENT(Kalman)
+
+ADD_COMPONENT(DrawBall)
